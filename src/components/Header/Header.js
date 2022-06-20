@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import axios from 'axios';
 import logo from '../../files/logo.svg'
 import {Link} from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
-export default function Header () {
+export default function Header ({baseUrl}) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [modal,setModal]=useState(false)
   const [userExists,setUserExists]=useState(true)
@@ -10,8 +12,40 @@ export default function Header () {
   const [password,setPassword]=useState('')
   const [message,setMessage]=useState('')
   const [signupSuccess,setSignupSuccess]=useState(false)
+  const {user,setUser}=useContext(UserContext)
 
 
+  const handleSignup =(e)=>{
+    e.preventDefault()
+    axios.post(`${baseUrl}/users/register`,{
+      username, password
+    })
+    .then(res=>{
+      setSignupSuccess(true)
+      console.log(res.data)
+    })
+    .catch(err=>console.log(err))
+
+  }
+
+  const handleLogin=(e)=>{
+    e.preventDefault()
+    axios.post(`${baseUrl}/users/login`,{
+      username, password
+    })
+    .then(res=>{
+      setUser(res.data)
+      setLoggedIn(true)
+      setModal(false)
+    })
+    .catch(err=>console.log(err))
+  }
+
+  const handleLogout=()=>{
+    setUser({})
+    setLoggedIn(false)
+    setSignupSuccess(false)
+  }
 
 
   return (
@@ -20,8 +54,8 @@ export default function Header () {
         {
           loggedIn ?
           <div>
-            <p>ahoj Haskipes</p>
-            <button>Logout</button>
+            <p>Welcome {user.username}</p>
+            <button onClick={handleLogout}>Logout</button>
           </div>
      
           : 
@@ -40,7 +74,7 @@ export default function Header () {
               userExists ?
               <div>
                 <h2>Log in</h2>
-                <form>
+                <form onSubmit={handleLogin}>
                   <input type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
                   <input type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
                   <button className='login-btn' type="submit" >Submit</button>
@@ -52,7 +86,7 @@ export default function Header () {
               : 
               <div> 
                 <h2>Sign Up</h2>
-                <form>
+                <form onSubmit={handleSignup}>
                   <input type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
                   <input type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
                   <button className='login-btn' type="submit">Submit</button>

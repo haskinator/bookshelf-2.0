@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../../files/logo.svg'
 import back from '../../files/back.svg'
 
-export default function Header2 () {
+export default function HeaderSearch () {
   return (
     <div className='header2-container'>
         <a className='back-btn' href='/'><img src={back} alt='back'></img></a>

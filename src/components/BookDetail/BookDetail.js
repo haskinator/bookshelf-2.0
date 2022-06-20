@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import Header2 from '../Header/Header2';
+import HeaderSearch from '../Header/HeaderSearch';
 
 export default function BookDetail() {
 
@@ -67,7 +67,7 @@ export default function BookDetail() {
 
   return (
     <div className='main-container'>
-        <Header2/>
+        <HeaderSearch/>
         {bookLoaded !== true ? console.log("nic") : 
         <div className='book-detail'>
             <div className='book-detail-left'>

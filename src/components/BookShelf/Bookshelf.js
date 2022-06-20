@@ -4,7 +4,7 @@ import EmptyBookshelf from './EmptyBookshelf'
 import FullBookshelf from './FullBookshelf'
 import Header from '../Header/Header'
 
-export default function BookShelf () {
+export default function BookShelf ({baseUrl}) {
 
   const[isfull, setisfull] = useState(false)
 
@@ -19,7 +19,7 @@ export default function BookShelf () {
 
   return (
     <div >
-        <Header/>
+        <Header baseUrl={baseUrl} />
         <div className='bookshelf-container'>
             <div className='bookshelf-header-container'>
                 <h1>My Bookshelf</h1>

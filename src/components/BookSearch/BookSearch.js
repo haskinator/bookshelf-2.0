@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import SearchResult from './SearchResult'
 import EmptyResults from './EmptyResults'
-import Header2 from '../Header/Header2'
+import HeaderSearch from '../Header/HeaderSearch'
 
 export default function BookSearch() {
 
@@ -31,7 +31,7 @@ export default function BookSearch() {
 
     return (
         <div className='main-container'>
-            <Header2/>
+            <HeaderSearch/>
             <div className='search-container'>
                 <h1 className='search-header'>Add book</h1>
                 <form className='search-bar' onSubmit={handleSubmit}>
