@@ -35,7 +35,7 @@ export default function BookSearch() {
             <div className='search-container'>
                 <h1 className='search-header'>Add book</h1>
                 <form className='search-bar' onSubmit={handleSubmit}>
-                    <input onClick={inputValue} value={query} onChange={(e)=>setQuery(e.target.value)}/>
+                    <input className='search-input' onClick={inputValue} value={query} onChange={(e)=>setQuery(e.target.value)}/>
                     <button className='search-btn' type="submit">Search</button>
                 </form>            
             </div>

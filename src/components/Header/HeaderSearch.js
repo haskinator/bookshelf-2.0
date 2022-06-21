@@ -4,10 +4,10 @@ import back from '../../files/back.svg'
 
 export default function HeaderSearch () {
   return (
-    <div className='header2-container'>
+    <div className='header-search-container '>
         <a className='back-btn' href='/'><img src={back} alt='back'></img></a>
         <a className='logo' href='/'><img src={logo} alt='logo'></img></a>
-        <img className='avatar-container' src='https://i.pravatar.cc/300' alt='avatar'></img>
+        <p className='header-user'>haskipes</p>
     </div>
   )
 }
