@@ -53,61 +53,73 @@ export default function Header ({baseUrl}) {
     <div>
       <div className='header-container '>
         <a className='logo' href='/'><img src={logo} alt='logo'></img></a>
-          {
-            loggedIn ?
-            
-            <div className='header-user'>
-              <p>{user.username}</p>
-              <button className = 'header-login' onClick={handleLogout}>Logout</button>
-            </div>
-      
-            : 
-            <div className='header-user'>
-              <button className = 'header-login' onClick={()=>setModal(!modal)}>Log in</button>
-            </div>
-            
-          }
+
+          <div className='header-user'>
+            {
+              loggedIn ?
+              
+              <div className='header-entry'>
+                <p>{user.username}</p>
+                <button className = 'header-login' onClick={handleLogout}>Log out</button>
+              </div>
+        
+              : 
+              <div>
+                <button className = 'header-login' onClick={()=>setModal(!modal)}>Log in</button>
+              </div>
+              
+            }
+
+          </div>
+          
       </div>
     
       
         
         {
           modal ?
-          <div className='modal'>
-            <div className='modal-content'>
-              <div className='modal-close' onClick={()=>{setModal(false)}}>&times;</div> 
+          <div className='entry-modal'>
+            <div className='entry-modal-content'>
+              <div className='entry-modal-close' onClick={()=>{setModal(false)}}>&times;</div> 
 
               {
                 userExists ?
-                <div className='modal-login'>
-                  <h1 className='log-in-header'>Log in</h1>
-                  <p className='log-in-info'>Log in first to start addding books to your bookshelf</p>
-                  <form className='modal-form' onSubmit={handleLogin}>
-                    <div className='modal-form-input'>
-                      <label>Username</label>
-                      <input className='form-input' type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
+                <div className='entry-form-elements'>
+                  <h1>Log in</h1>
+                  <p className='entry-form-info'>Log in first, to start addding books to your bookshelf</p>
+                  <form className='entry-form' onSubmit={handleLogin}>
+                    <div className='entry-form-input'>
+                      <label className='entry-form-label'>Username</label>
+                      <input className='entry-form-credentials' type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
                     </div>
-                    <div className='modal-form-input'>
-                      <label>Password</label>
-                      <input className='form-input' type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
+                    <div className='entry-form-input'>
+                      <label className='entry-form-label'>Password</label>
+                      <input className='entry-form-credentials' type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
-                    <button className='login-btn' type="submit">Log in</button>
+                    <button className='entry-form-submit' type="submit">Log in</button>
                   </form>
-                  <p>If you already have and account, please <span className='modal-signup-switch' onClick={()=>{setUserExists(false)}}>sign up.</span></p>
+                  <p>If you already have and account, please <span className='entry-switch' onClick={()=>{setUserExists(false)}}>sign up.</span></p>
                   {message !== '' ? <p>{message}</p> : null}
                 </div>
                 
                 : 
-                <div className='modal-signup'> 
-                  <h2>Sign Up</h2>
-                  <form className='modal-form' onSubmit={handleSignup}>
-                    <input type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>                    
-                    <input type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
-                    <button className='login-btn' type="submit">Sign up</button>
+                <div className='entry-form-elements'> 
+                  <h1>Sign Up</h1>
+                  <p className='entry-form-info'>Log in first, to start addding books to your bookshelf</p>
+                  <form className='entry-form' onSubmit={handleSignup}>
+                    <div className='entry-form-input'>
+                      <label className='entry-form-label'>Username</label>
+                      <input className='entry-form-credentials' type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
+                    </div>
+                    <div className='entry-form-input'>
+                      <label className='entry-form-label'>Password</label>
+                      <input className='entry-form-credentials' type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
+                    </div>             
+                    <button className='entry-form-submit' type="submit">Sign up</button>
                   </form>
                   {
                     signupSuccess ? <p style={{"color":"green"}}>Signed up successfully. <span onClick={()=>{setUserExists(true)}}>Login</span></p>
-                    : <p>Already have an account? <span onClick={()=>{setUserExists(true)}}>Login</span></p>
+                    : <p>Already have an account? <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
                   }
                   
                 </div>

@@ -36,7 +36,7 @@ h1 {
 }
 
 
-.add-btn, .login-btn {
+.add-btn, .entry-form-submit {
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -171,6 +171,7 @@ p {
     background-color: white; 
     font-size: 18px;
     padding-left: 8px;
+    outline: none;
 }
 
 .search-btn {
