@@ -3,7 +3,7 @@ import SearchResult from './SearchResult'
 import EmptyResults from './EmptyResults'
 import HeaderSearch from '../Header/HeaderSearch'
 
-export default function BookSearch() {
+export default function BookSearch({baseUrl}) {
 
     const[query,setQuery] = useState("Search book")
     const[books,setBooks] = useState()
@@ -23,10 +23,11 @@ export default function BookSearch() {
             setBooks(result.items)
             setResults(true)
             })
-            
+
    }
 
    console.log(results)
+   console.log(books)
 
 
     return (
@@ -39,7 +40,7 @@ export default function BookSearch() {
                     <button className='search-btn' type="submit">Search</button>
                 </form>            
             </div>
-            {results===false ? <EmptyResults/> : <SearchResult books={books} result={results} /> }
+            {results===false ? <EmptyResults/> : <SearchResult books={books} result={results} baseUrl={baseUrl} /> }
             
         </div>
   )

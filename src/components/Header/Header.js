@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react'
 import axios from 'axios';
 import logo from '../../files/logo.svg'
-import {Link} from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import './header.css'
 
@@ -14,7 +13,7 @@ export default function Header ({baseUrl}) {
   const [signupSuccess,setSignupSuccess]=useState(false)
   const {user,setUser}=useContext(UserContext)
   const {loggedIn,setLoggedIn}=useContext(UserContext)
-
+  const {userBooks,setUserBooks}=useContext(UserContext)
 
   const handleSignup =(e)=>{
     e.preventDefault()
@@ -49,6 +48,9 @@ export default function Header ({baseUrl}) {
     setLoggedIn(false)
     setSignupSuccess(false)
     console.log(loggedIn)
+    window.localStorage.clear('user')
+    setUserBooks([])
+    
   }
 
 

@@ -1,21 +1,16 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useContext } from 'react'
 import add from '../../files/add.svg'
 import EmptyBookshelf from './EmptyBookshelf'
 import FullBookshelf from './FullBookshelf'
 import Header from '../Header/Header'
 import { UserContext } from '../context/UserContext'
 
-export default function BookShelf ({baseUrl}) {
+export default function BookShelf ({baseUrl, userBooks}) {
 
-  const[isfull, setisfull] = useState(false)
   const {loggedIn}=useContext(UserContext)
 
-  useEffect(() => {
-    let getbooks = window.localStorage.getItem('bookShelf') 
-    getbooks !== null ? setisfull(true): setisfull(false)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
 
+  console.log(userBooks)
 
   return (
     <div >
@@ -38,7 +33,7 @@ export default function BookShelf ({baseUrl}) {
                   
                 </div>     
             </div> 
-            {isfull !== false ? <FullBookshelf/> : <EmptyBookshelf/>} 
+            {userBooks === undefined || userBooks.length === 0 ? <EmptyBookshelf/> : <FullBookshelf userBooks={userBooks}/>  } 
         </div>
           
     </div>

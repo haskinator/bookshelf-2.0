@@ -1,27 +1,38 @@
-import React, {useState, useEffect}  from 'react'
+import React, {useContext}  from 'react'
 import circle from '../../files/circle.svg'
 import check from '../../files/check.svg'
 import axios from 'axios'
+import { UserContext } from '../context/UserContext'
 
 
-export default function SearchResult ({books}) {
+export default function SearchResult ({books,baseUrl}) {
 
+  const {user}=useContext(UserContext)
 
-  const[bookShelf,setbookShelf] = useState([])
-  
-  useEffect(() => {
-    window.localStorage.setItem('bookShelf', JSON.stringify(bookShelf))
-  }, [bookShelf]);
+  const addBook =(bookDetails, i)=>{
+      const identifier = bookDetails.id
+      const title = bookDetails?.volumeInfo?.title
+      const imageUrl = bookDetails?.volumeInfo?.imageLinks?.thumbnail
+      const pages = bookDetails?.volumeInfo?.pageCount
+      const author = bookDetails?.volumeInfo?.authors?.[0]
+      const description = bookDetails?.volumeInfo?.description
+      const tag = "";
 
-
-  const addBook =(bookDetails,i)=>{
-    const found = bookShelf.some(item=>item.id===bookDetails.id);
-    if(!found) {
-      setbookShelf([...bookShelf,{'id':bookDetails.id, 'title':bookDetails.volumeInfo.title,'imgUrl':bookDetails.volumeInfo.imageLinks.thumbnail, 'pages':bookDetails.volumeInfo.pageCount, 'author':bookDetails.volumeInfo.authors[0], 'published':bookDetails.volumeInfo.publishedDate, 'info':bookDetails.searchInfo.textSnippet, 'tag':""}])
       document.getElementsByClassName('add-book-btn')[i].src = {check}.check
 
-    }
+      axios.post(`${baseUrl}/users/${user.id}/books`,{
+        identifier,title,imageUrl,pages,author,description, tag
+      })
+      .then(res=>{
+        console.log(res.data)
+      })
+      .catch(err=>console.log(err))
+      
   }
+
+  console.log(user.id)
+
+
 
   return (
     <div className='search-result-after'>    
