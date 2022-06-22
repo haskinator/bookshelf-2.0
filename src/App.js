@@ -29,7 +29,6 @@ useEffect(() => {
       })
       .then(res=>{
         setUserBooks(res.data)
-        console.log(res.data)
       })
       .catch(err=>console.log(err))
 

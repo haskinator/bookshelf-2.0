@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import HeaderSearch from '../Header/HeaderSearch';
+import { UserContext } from '../context/UserContext';
+
 
 export default function BookDetail() {
 
@@ -8,15 +10,15 @@ export default function BookDetail() {
 
     const[bookDetail, setBookDetail] = useState();
     const[bookLoaded,setBookLoaded] = useState();
+
+    const {userBooks,setUserBooks}=useContext(UserContext)
+
    
 
     useEffect(() => {
-        let bookDetails = window.localStorage.getItem('bookShelf') 
-        setBookDetail(JSON.parse(bookDetails))
-        setBookLoaded(true)
-      }, []);
+        userBooks ? setBookLoaded(true) : setBookLoaded(false)
+      }, [userBooks]);
 
-    //   books.map((item, i)=>{
       
     const toRead = (bookCurrent) => {
         bookCurrent.tag = 'To Read'
@@ -63,15 +65,17 @@ export default function BookDetail() {
         console.log(read)
     }
     
-    const currentBook = bookDetail?.filter(item=>item.id===bookId)
+    const currentBook = userBooks?.filter(item=>item.Identifier===bookId)
+    console.log(currentBook)
+
 
   return (
     <div className='main-container'>
         <HeaderSearch/>
-        {bookLoaded !== true ? console.log("nic") : 
+        {bookLoaded !== true ? console.log("gogo") : 
         <div className='book-detail'>
             <div className='book-detail-left'>
-                <img className='book-detail-img' src={currentBook[0].imgUrl} alt='book-cover'></img>
+                <img className='book-detail-img' src={currentBook[0].ImageUrl} alt='book-cover'></img>
                 <div className='buttons'>
                     <button onClick={()=>toRead(currentBook[0])} className='buttons toread' id='toread'>To read</button> 
                     <button onClick={()=>reading(currentBook[0])} className='buttons reading' id='reading'>Reading</button> 
@@ -80,10 +84,10 @@ export default function BookDetail() {
             </div>
  
             <div className='book-detail-data'>
-                <h3 className='book-detail-author' > {currentBook[0].author}</h3>
-                <h3 className='book-detail-header'>{currentBook[0].title}</h3>
-                <p className='book-detail-pages' >{currentBook[0].pages} pages </p>
-                <p className='book-detail-info' >{currentBook[0].info.replace(/(<([^>]+)>)/gi, "")}</p>
+                <h3 className='book-detail-author' > {currentBook[0].Author}</h3>
+                <h3 className='book-detail-header'>{currentBook[0].BookTitle}</h3>
+                <p className='book-detail-pages' >{currentBook[0].PageNumber} pages </p>
+                <p className='book-detail-info' >{currentBook[0].Description.replace(/(<([^>]+)>)/gi, " ")}</p>
             </div>
         
         </div>    
@@ -100,3 +104,5 @@ export default function BookDetail() {
 //     // window.localStorage.setItem('bookShelf', {'tag': 'toRead'} )
 
 //   })
+
+// replace(/(<([^>]+)>)/gi, "")

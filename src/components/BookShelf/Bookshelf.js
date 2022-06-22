@@ -9,9 +9,6 @@ export default function BookShelf ({baseUrl, userBooks}) {
 
   const {loggedIn}=useContext(UserContext)
 
-
-  console.log(userBooks)
-
   return (
     <div >
         <Header baseUrl={baseUrl}/>
