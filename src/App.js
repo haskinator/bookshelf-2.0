@@ -12,9 +12,19 @@ function App() {
 
 const baseUrl = 'https://bookshelf-project-mimo.herokuapp.com'
 const [user,setUser]=useState({})
+const [loggedIn,setLoggedIn]=useState(false)
+
+useEffect(() => {
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    const foundUser = JSON.parse(loggedInUser);
+    setUser(foundUser);
+    setLoggedIn(true)
+  }
+}, []);
 
   return (
-    <UserContext.Provider value={{user,setUser}}>
+    <UserContext.Provider value={{user: user,setUser, loggedIn: loggedIn,setLoggedIn}}>
     <div> 
       <BrowserRouter>    
         <Routes>

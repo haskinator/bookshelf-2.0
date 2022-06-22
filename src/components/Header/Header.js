@@ -6,7 +6,6 @@ import { UserContext } from '../context/UserContext';
 import './header.css'
 
 export default function Header ({baseUrl}) {
-  const [loggedIn, setLoggedIn] = useState(false)
   const [modal,setModal]=useState(false)
   const [userExists,setUserExists]=useState(true)
   const [username,setUsername]=useState('')
@@ -14,6 +13,7 @@ export default function Header ({baseUrl}) {
   const [message,setMessage]=useState('')
   const [signupSuccess,setSignupSuccess]=useState(false)
   const {user,setUser}=useContext(UserContext)
+  const {loggedIn,setLoggedIn}=useContext(UserContext)
 
 
   const handleSignup =(e)=>{
@@ -38,6 +38,8 @@ export default function Header ({baseUrl}) {
       setUser(res.data)
       setLoggedIn(true)
       setModal(false)
+      window.localStorage.setItem('user', JSON.stringify(res.data))
+      console.log(res.data)
     })
     .catch(err=>console.log(err))
   }
@@ -46,6 +48,7 @@ export default function Header ({baseUrl}) {
     setUser({})
     setLoggedIn(false)
     setSignupSuccess(false)
+    console.log(loggedIn)
   }
 
 
@@ -59,7 +62,7 @@ export default function Header ({baseUrl}) {
               loggedIn ?
               
               <div className='header-entry'>
-                <p>{user.username}</p>
+                <p className='header-user logged'>{user.username}</p>
                 <button className = 'header-login' onClick={handleLogout}>Log out</button>
               </div>
         
