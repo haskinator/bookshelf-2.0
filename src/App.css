@@ -271,7 +271,38 @@ p {
     font-size: 14px;
     font-weight: 700;
     margin-top: 16px;
+    margin-bottom: 4px;
     
+}
+.remove {
+    border: none;
+    border-radius: 8px;
+    height: 24px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove:hover {
+    cursor: pointer;
+    color:red;
+    opacity: 0.4;
+}
+
+.deleted {
+    border: none;
+    border-radius: 8px;
+    height: 24px;
+    width: 100%;
+    color:red;
+    opacity: 0.4;
+    display: flex;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
 }
 
 .book-detail-header{
@@ -320,7 +351,8 @@ p {
     align-items: center;
     justify-content: center;
     color: #525252;
-    border: 1px solid #525252;
+    outline: 2px solid #525252;
+    outline-offset: 2px;    
 }
 
 .reading {
@@ -338,7 +370,6 @@ p {
 
 .readingClick {
     background-color: #D4E4F8;
-    border: none;
     opacity: 1;
     border-radius: 8px;
     width: 75px;
@@ -347,8 +378,9 @@ p {
     align-items: center;
     justify-content: center;
     color: #017BEB;
-    border: 1px solid #017BEB;
     border-radius: 8px;
+    outline: 2px solid #017BEB;
+    outline-offset: 2px;
 }
 
 
@@ -375,7 +407,8 @@ p {
     align-items: center;
     justify-content: center;
     color: #2A9C64;
-    border: 1px solid #2A9C64;
+    outline: 2px solid #2A9C64;
+    outline-offset: 2px;
 }
 
 .readtag {
@@ -543,10 +576,12 @@ p {
     }
     
     .book-detail-left {
-        width: 220px;
+        /* width: 220px;
         display: flex;
         flex-direction: column;
-        margin-left: 58px;
+        background-color: pink;
+        margin-left: 58px; */
+        width: 500px;
     }
     
     .book-detail-img {

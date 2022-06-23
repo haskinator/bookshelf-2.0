@@ -14,6 +14,7 @@ export default function BookDetail({baseUrl}) {
     const {user,setUser}=useContext(UserContext)
     const {userBooks,setUserBooks}=useContext(UserContext)
     const [userTag, setUserTag]=useState();
+    const [bookRemoved, setBookRemoved] = useState(false);
 
    
 
@@ -87,7 +88,7 @@ export default function BookDetail({baseUrl}) {
 
     console.log(userTag)
 
-    const reading = (bookCurrent) => {
+    const reading = () => {
         const tag = 'Reading'
         axios.patch(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
             tag
@@ -106,7 +107,7 @@ export default function BookDetail({baseUrl}) {
         console.log(reading)
     }
 
-    const read = (bookCurrent) => {
+    const read = () => {
         const tag = 'Read'
         axios.patch(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
             tag
@@ -124,8 +125,21 @@ export default function BookDetail({baseUrl}) {
         read.classList.toggle('readClick')
         console.log(read)
     }
+
+    const removeBook =()=>{
+        axios.delete(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
+        })
+        .then(res=>{
+            setBookRemoved(true)
+     
+        })
+        .catch(err=>console.log(err))
+    }
     
     const currentBook = userBooks?.filter(item=>item.Identifier===bookId)
+
+    console.log(bookRemoved)
+
 
   return (
     <div className='main-container'>
@@ -135,10 +149,21 @@ export default function BookDetail({baseUrl}) {
             <div className='book-detail-left'>
                 <img className='book-detail-img' src={currentBook[0].ImageUrl} alt='book-cover'></img>
                 <div className='buttons'>
-                    <button onClick={()=>toRead(currentBook[0])} className='buttons toread' id='toread'>To read</button> 
-                    <button onClick={()=>reading(currentBook[0])} className='buttons reading' id='reading'>Reading</button> 
-                    <button onClick={()=>read(currentBook[0])}  className='buttons read' id='read'>Read</button> 
+                    <button onClick={()=>toRead()} className='buttons toread' id='toread'>To read</button> 
+                    <button onClick={()=>reading()} className='buttons reading' id='reading'>Reading</button> 
+                    <button onClick={()=>read()}  className='buttons read' id='read'>Read</button> 
                 </div>
+                {
+                    bookRemoved ? 
+                    
+                    <button onClick={()=>removeBook()} className='buttons deleted' id='remove-book'>Book removed</button>
+
+                    :
+                    
+                    <button onClick={()=>removeBook()} className='buttons remove' id='remove-book'>Remove book</button>
+
+
+                }
             </div>
  
             <div className='book-detail-data'>
