@@ -21,7 +21,7 @@ export default function SearchResult ({books,baseUrl}) {
       document.getElementsByClassName('add-book-btn')[i].src = {check}.check
 
       axios.post(`${baseUrl}/users/${user.id}/books`,{
-        identifier,title,imageUrl,pages,author,description, tag
+        identifier,title,imageUrl,pages,author,description,tag
       })
       .then(res=>{
         console.log(res.data)

@@ -49,7 +49,7 @@ useEffect(() => {
           /> 
           <Route path='/search' element= {<BookSearch baseUrl={baseUrl}/>}/>
           <Route path='/search' element= {<HeaderSearch/>}/>
-          <Route path='/bookdetail/book/:bookId' element={<BookDetail/>}/>
+          <Route path='/bookdetail/book/:bookId' element={<BookDetail baseUrl={baseUrl}/>}/>
         </Routes>
         
       </BrowserRouter>

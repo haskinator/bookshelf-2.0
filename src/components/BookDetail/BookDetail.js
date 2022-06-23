@@ -1,31 +1,81 @@
+/* eslint-disable no-lone-blocks */
 import React, {useState, useEffect,useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import HeaderSearch from '../Header/HeaderSearch';
 import { UserContext } from '../context/UserContext';
+import axios from 'axios';
 
 
-export default function BookDetail() {
+export default function BookDetail({baseUrl}) {
 
     const {bookId} = useParams();
 
-    const[bookDetail, setBookDetail] = useState();
     const[bookLoaded,setBookLoaded] = useState();
-
+    const {user,setUser}=useContext(UserContext)
     const {userBooks,setUserBooks}=useContext(UserContext)
+    const [userTag, setUserTag]=useState();
 
    
 
     useEffect(() => {
         userBooks ? setBookLoaded(true) : setBookLoaded(false)
-      }, [userBooks]);
+        userBooks ?
+        axios.get(`${baseUrl}/users/${user.id}/books/${bookId}`,{
+        })
+        .then(res=>{
+            const userBook = res.data
+            setUserTag(userBook[0].tag)
+            console.log(userTag)
+        })
+        .catch(err=>console.log(err))
 
-      
-    const toRead = (bookCurrent) => {
-        bookCurrent.tag = 'To Read'
-        console.log(bookCurrent)
-        console.log(bookDetail)
-        window.localStorage.removeItem('bookShelf')
-        window.localStorage.setItem('bookShelf', JSON.stringify(bookDetail))
+        : console.log("null")
+        
+
+        if (userTag === "To Read") {
+                var reading = document.getElementById('reading')
+                reading.classList.remove('readingClick')
+                var read = document.getElementById('read')
+                read.classList.remove('readClick')      
+                var toRead = document.getElementById('toread')
+                toRead.classList.add('toReadClick')
+                console.log(toRead)
+            }
+
+        if (userTag === "Reading") {
+            var read = document.getElementById('read')
+            read.classList.remove('readClick')      
+            var toRead = document.getElementById('toread')
+            toRead.classList.remove('toReadClick')
+            var reading = document.getElementById('reading')
+            reading.classList.toggle('readingClick')
+            console.log(reading)
+        }
+        
+        if (userTag === "Read") {
+            var toRead = document.getElementById('toread')
+            toRead.classList.remove('toReadClick')
+            var reading = document.getElementById('reading')
+            reading.classList.remove('readingClick')
+            var read = document.getElementById('read')
+            read.classList.toggle('readClick')
+            console.log(read)
+        }
+
+      }, [userBooks,userTag]);
+
+
+
+    const toRead = () => {
+        const tag = 'To Read'
+        axios.patch(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
+            tag
+        })
+        .then(res=>{
+ 
+        })
+        .catch(err=>console.log(err))
+        
         var reading = document.getElementById('reading')
         reading.classList.remove('readingClick')
         var read = document.getElementById('read')
@@ -35,12 +85,18 @@ export default function BookDetail() {
         console.log(toRead)
     }
 
+    console.log(userTag)
+
     const reading = (bookCurrent) => {
-        bookCurrent.tag = 'Reading'
-        console.log(bookCurrent)
-        console.log(bookDetail)
-        window.localStorage.removeItem('bookShelf')
-        window.localStorage.setItem('bookShelf', JSON.stringify(bookDetail))  
+        const tag = 'Reading'
+        axios.patch(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
+            tag
+        })
+        .then(res=>{
+ 
+        })
+        .catch(err=>console.log(err))
+
         var read = document.getElementById('read')
         read.classList.remove('readClick')      
         var toRead = document.getElementById('toread')
@@ -51,11 +107,15 @@ export default function BookDetail() {
     }
 
     const read = (bookCurrent) => {
-        bookCurrent.tag = 'Read'
-        console.log(bookCurrent)
-        console.log(bookDetail)
-        window.localStorage.removeItem('bookShelf')
-        window.localStorage.setItem('bookShelf', JSON.stringify(bookDetail))  
+        const tag = 'Read'
+        axios.patch(`${baseUrl}/users/${user.id}/books/${currentBook[0].Identifier}`,{
+            tag
+        })
+        .then(res=>{
+ 
+        })
+        .catch(err=>console.log(err))
+
         var toRead = document.getElementById('toread')
         toRead.classList.remove('toReadClick')
         var reading = document.getElementById('reading')
@@ -66,8 +126,6 @@ export default function BookDetail() {
     }
     
     const currentBook = userBooks?.filter(item=>item.Identifier===bookId)
-    console.log(currentBook)
-
 
   return (
     <div className='main-container'>
@@ -84,10 +142,13 @@ export default function BookDetail() {
             </div>
  
             <div className='book-detail-data'>
-                <h3 className='book-detail-author' > {currentBook[0].Author}</h3>
+                <h3 className='book-detail-author'> {currentBook[0].Author}</h3>
                 <h3 className='book-detail-header'>{currentBook[0].BookTitle}</h3>
-                <p className='book-detail-pages' >{currentBook[0].PageNumber} pages </p>
-                <p className='book-detail-info' >{currentBook[0].Description.replace(/(<([^>]+)>)/gi, " ")}</p>
+                {currentBook[0].PageNumber ?
+                    <p className='book-detail-pages'>{currentBook[0].PageNumber} pages </p>
+                : null
+                }
+                <p className='book-detail-info'>{currentBook[0].Description}</p>
             </div>
         
         </div>    
@@ -97,12 +158,3 @@ export default function BookDetail() {
   )
 }
 
-// var result = bookDetail.map(item => {
-//     if (bookCurrent.id === bookDetail.id)
-//     item.tag='toRead' 
-//     return console.log(result)
-//     // window.localStorage.setItem('bookShelf', {'tag': 'toRead'} )
-
-//   })
-
-// replace(/(<([^>]+)>)/gi, "")
