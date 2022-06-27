@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom'
 import HeaderSearch from '../Header/HeaderSearch';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
+import '../BookDetail/bookdetail.css'
 
 
 export default function BookDetail({baseUrl}) {

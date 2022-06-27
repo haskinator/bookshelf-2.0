@@ -12,13 +12,11 @@
     justify-items: center;
     align-items: center;
     padding: 12px 0px;
-
 }
 
 .header-user{
     grid-column-start: 3;
     justify-self: right;
-    margin-right: 40px;
     font-size: 18px;
     text-decoration: none;
     color: black;
@@ -26,6 +24,7 @@
 
 .logged {
     color: black;
+    margin-right: 24px;
 }
 
 .login-failed {
@@ -36,7 +35,8 @@
 
 .header-entry {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .header-login {
@@ -61,7 +61,7 @@
 .back-btn {
     grid-column-start: 1;
     justify-self: flex-start;
-    margin-left: 40px;
+    /* margin-left: 40px; */
 }
 
 /*Entry modal open and close*/
@@ -82,8 +82,9 @@
 
 .entry-modal-content {
     border-radius: 12px;
-    height: 492px;
+    min-height: 492px;
     width: 480px;
+    margin: 0 40px;
 }
 
 .entry-modal-close {
@@ -166,6 +167,32 @@
 .entry-switch:focus {
     cursor: pointer;
 
+}
+
+@media (max-width: 520px) {
+    .logged {
+        display: none; 
+    }
+
+    .entry-form-info {
+        margin: 16px 0 24px 0;
+    }
+
+    .entry-form-credentials {
+        margin-bottom: 16px;
+    }
+
+    .login-failed{
+        margin-bottom: 0px;
+        
+    }
+
+    .entry-modal-close {
+        font-size: 32px;
+        padding: 0px 24px 0 0;
+    }
+    
+   
 }
 
 

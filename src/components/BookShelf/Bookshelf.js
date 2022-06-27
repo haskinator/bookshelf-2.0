@@ -3,6 +3,7 @@ import add from '../../files/add.svg'
 import Header from '../Header/Header'
 import { UserContext } from '../context/UserContext'
 import book from '../../files/book.svg'
+import '../BookShelf/bookshelf.css'
 
 export default function BookShelf ({baseUrl, userBooks}) {
 

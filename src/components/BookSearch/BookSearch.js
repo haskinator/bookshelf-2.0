@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import SearchResult from './SearchResult'
 import EmptyResults from './EmptyResults'
 import HeaderSearch from '../Header/HeaderSearch'
+import '../BookSearch/booksearch.css'
 
 export default function BookSearch({baseUrl}) {
 
