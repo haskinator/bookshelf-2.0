@@ -59,7 +59,6 @@ export default function Header ({baseUrl}) {
     
   }
 
-  console.log(usernameTaken)
 
   return (
     <div>

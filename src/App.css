@@ -54,12 +54,53 @@ h1 {
 .add-icon {
     width: 24px;
     height: 24px;
+    
 }
 
+.bookshelf-filter {
+    width: 324px;
+    height: 32px;
+    background: #F0E4DB;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.filter-switch {
+    border: none;
+    color: black;
+    opacity: 0.6;
+    font-weight: 700;
+    width: 23%;
+    background-color: #F0E4DB;
+}
+
+.filter-switch:focus {
+    background-color: white;
+    opacity: 1;
+    border-radius: 20px;
+    width: 80px;
+    height: 28px;
+
+}
+
+.filter-switch:hover {
+    cursor: pointer;
+}
+
+.default {
+    background-color: white;
+    opacity: 1;
+    border-radius: 20px;
+    width: 80px;
+    height: 28px;
+}
 
 /* Bookshelf */
 
-.books-container {
+.bookshelf-content-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,51 +132,52 @@ p {
     color: rgba(0, 0, 0, 0.6);
 }
 
-/* Book shelf - book card */
+/* Book shelf - full*/
 
-.full-bookshelf-container {
+.bookshelf-content-full {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 36px;
-    justify-content: space-between;
-    text-align: center;
+    width: 80%;
     margin-bottom: 300px;
     margin-top: 24px;
-    width: 80%;
-
 }
+
 
 .book-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    align-items: left;
+    justify-content: space-between;
 }
 
 .book-card-image {
     width: 100%;
-    height: auto;
     border: 1px solid #F2E7DF;
     border-radius: 12px;
-}
-
-
-.book-card-title {
-    display: flex;
-    justify-content: left;
-    flex-wrap:wrap;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 20px;
-    color: black;
-    padding: 8px 0px;
-    text-align: left;
-    
 }
 
 .book-card-link {
     text-decoration: none;
 }
+
+
+.book-card-title{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-top: 8px;
+    
+    
+}
+
 
 
 /* Book search */
@@ -488,8 +530,7 @@ p {
     
     .readingtag {
         margin-top: 8px;
-        font-size: 14px;
-    
+        font-size: 14px;    
     }
 
     .book-card-title {
