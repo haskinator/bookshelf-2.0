@@ -14,6 +14,8 @@ export default function Header ({baseUrl}) {
   const {user,setUser}=useContext(UserContext)
   const {loggedIn,setLoggedIn}=useContext(UserContext)
   const {userBooks,setUserBooks}=useContext(UserContext)
+  const [usernameTaken, setUserNameTaken] = useState()
+  const [loginFailed,setLogInFailed] = useState()
 
   const handleSignup =(e)=>{
     e.preventDefault()
@@ -24,7 +26,9 @@ export default function Header ({baseUrl}) {
       setSignupSuccess(true)
       console.log(res.data)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      setUserNameTaken(true)
+    })
 
   }
 
@@ -40,7 +44,9 @@ export default function Header ({baseUrl}) {
       window.localStorage.setItem('user', JSON.stringify(res.data))
       console.log(res.data)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      setLogInFailed(true)
+    })
   }
 
   const handleLogout=()=>{
@@ -53,6 +59,7 @@ export default function Header ({baseUrl}) {
     
   }
 
+  console.log(usernameTaken)
 
   return (
     <div>
@@ -85,7 +92,7 @@ export default function Header ({baseUrl}) {
           modal ?
           <div className='entry-modal'>
             <div className='entry-modal-content'>
-              <div className='entry-modal-close' onClick={()=>{setModal(false)}}>&times;</div> 
+              <div className='entry-modal-close' onClick={()=>{setModal(false); setUserNameTaken(false); setUserExists(true); setSignupSuccess(false); setLogInFailed(false)}}>&times;</div> 
 
               {
                 userExists ?
@@ -103,8 +110,10 @@ export default function Header ({baseUrl}) {
                     </div>
                     <button className='entry-form-submit' type="submit">Log in</button>
                   </form>
-                  <p>If you already have and account, please <span className='entry-switch' onClick={()=>{setUserExists(false)}}>sign up.</span></p>
+                  {loginFailed ? <p className='login-failed'>Wrong username or password.</p> : null}
+                  <p>If you do not have an account, please <span className='entry-switch' onClick={()=>{setUserExists(false)}}>sign up.</span></p>
                   {message !== '' ? <p>{message}</p> : null}
+                 
                 </div>
                 
                 : 
@@ -123,8 +132,14 @@ export default function Header ({baseUrl}) {
                     <button className='entry-form-submit' type="submit">Sign up</button>
                   </form>
                   {
-                    signupSuccess ? <p style={{"color":"green"}}>Signed up successfully. <span onClick={()=>{setUserExists(true)}}>Login</span></p>
+                    signupSuccess ? <p> Signed up successfully. <span className='entry-switch' onClick={()=>{setUserExists(true);setSignupSuccess(false)}}>Login</span></p>
+                    : usernameTaken ? 
+                      <p>This user already exist, please <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
                     : <p>Already have an account? <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
+                  }
+
+                  { null
+
                   }
                   
                 </div>

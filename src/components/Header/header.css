@@ -28,6 +28,12 @@
     color: black;
 }
 
+.login-failed {
+    color: red;
+    opacity: 0.6;
+    padding-bottom: 8px;
+}
+
 .header-entry {
     display: flex;
     justify-content: space-between;
@@ -153,6 +159,7 @@
 .entry-switch {
     color: black;
     text-decoration: underline 1px;
+    
 }
 
 .entry-switch:hover,
