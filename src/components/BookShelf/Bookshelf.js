@@ -32,8 +32,14 @@ export default function BookShelf ({baseUrl, userBooks}) {
         setFilteredReading(false)
         setFilteredToRead(false)
         setUnfiltered(false)
-        var readedFilter = document.getElementById('all-books')
-        readedFilter.classList.remove('default')
+        var readedFilter = document.getElementById('read-books')
+        readedFilter.classList.add('default')
+        var allBooksRemove = document.getElementById('all-books')
+        allBooksRemove.classList.remove('default')
+        var toReadFilter = document.getElementById('toread-books')
+        toReadFilter.classList.remove('default')
+        var readingFilter = document.getElementById('reading-book')
+        readingFilter.classList.remove('default')
     }
 
     const filterToRead = ()=>{
@@ -43,8 +49,14 @@ export default function BookShelf ({baseUrl, userBooks}) {
         setFilteredReading(false)
         setFilteredReaded(false)
         setUnfiltered(false)
-        var readedFilter = document.getElementById('all-books')
+        var toReadFilter = document.getElementById('toread-books')
+        toReadFilter.classList.add('default')
+        var allBooksRemove = document.getElementById('all-books')
+        allBooksRemove.classList.remove('default')
+        var readedFilter = document.getElementById('read-books')
         readedFilter.classList.remove('default')
+        var readingFilter = document.getElementById('reading-book')
+        readingFilter.classList.remove('default')
     }
 
     const filterReading = ()=>{
@@ -54,7 +66,13 @@ export default function BookShelf ({baseUrl, userBooks}) {
         setFilteredToRead(false)
         setFilteredReaded(false)
         setUnfiltered(false)
-        var readedFilter = document.getElementById('all-books')
+        var readingFilter = document.getElementById('reading-book')
+        readingFilter.classList.add('default')
+        var allBooksRemove = document.getElementById('all-books')
+        allBooksRemove.classList.remove('default')
+        var toReadFilter = document.getElementById('toread-books')
+        toReadFilter.classList.remove('default')
+        var readedFilter = document.getElementById('read-books')
         readedFilter.classList.remove('default')
     }
 
@@ -63,6 +81,14 @@ export default function BookShelf ({baseUrl, userBooks}) {
         setFilteredToRead(false)
         setFilteredReaded(false)
         setUnfiltered(true)
+        var readingFilter = document.getElementById('reading-book')
+        readingFilter.classList.remove('default')
+        var allBooks = document.getElementById('all-books')
+        allBooks.classList.add('default')
+        var toReadFilter = document.getElementById('toread-books')
+        toReadFilter.classList.remove('default')
+        var readedFilter = document.getElementById('read-books')
+        readedFilter.classList.remove('default')
     }
 
   return (
@@ -74,9 +100,9 @@ export default function BookShelf ({baseUrl, userBooks}) {
                 {bookshelfFull ?
                   <div className='bookshelf-filter'>
                     <button className='filter-switch default' id = 'all-books' onClick={()=>allBooks()}>All</button>
-                    <button className='filter-switch' onClick={()=>filterReading()}>Reading</button>
-                    <button className='filter-switch' onClick={()=>filterToRead()}>To Read</button>
-                    <button className='filter-switch' onClick={()=>filterReaded()}>Read</button>
+                    <button className='filter-switch' id = 'reading-book' onClick={()=>filterReading()}>Reading</button>
+                    <button className='filter-switch' id = 'toread-books' onClick={()=>filterToRead()}>To Read</button>
+                    <button className='filter-switch' id = 'read-books' onClick={()=>filterReaded()}>Read</button>
                   </div> 
                 
                 : null

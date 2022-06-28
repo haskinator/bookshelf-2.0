@@ -66,15 +66,6 @@ h1 {
     background-color: #F0E4DB;
 }
 
-.filter-switch:focus {
-    background-color: white;
-    opacity: 1;
-    border-radius: 20px;
-    width: 80px;
-    height: 28px;
-
-}
-
 .filter-switch:hover {
     cursor: pointer;
 }
@@ -83,7 +74,7 @@ h1 {
     background-color: white;
     opacity: 1;
     border-radius: 20px;
-    width: 80px;
+    width: 24%;
     height: 28px;
 }
 
@@ -101,6 +92,10 @@ h1 {
     width: 100%;
 
 
+}
+
+.empty {
+    text-align: center;
 }
 
 .bookshelf-icon, .search-icon {
@@ -261,6 +256,5 @@ p {
         column-gap: 24px;
         row-gap: 24px;
     }
-
    
 }

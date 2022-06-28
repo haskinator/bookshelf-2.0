@@ -85,6 +85,7 @@
 .book-detail-info {
     padding: 8px 0px;
     color: black;
+    margin-bottom: 120px;
 }
 
 .book-detail-author {
@@ -188,6 +189,7 @@
         height: auto;
         justify-content: center;
         row-gap: 24px;
+        padding: 0 12px;
     }
 
 
