@@ -256,5 +256,17 @@ p {
         column-gap: 24px;
         row-gap: 24px;
     }
+
+    .bookshelf-header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     
+    }
+
+    .add-btn {
+        margin-top: 12px;
+    
+    }
    
 }
