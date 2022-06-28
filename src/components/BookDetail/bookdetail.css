@@ -118,8 +118,7 @@
     align-items: center;
     justify-content: center;
     color: #525252;
-    outline: 2px solid #525252;
-    outline-offset: 2px;    
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #525252;
 }
 
 .reading {
@@ -138,7 +137,6 @@
 .readingClick {
     background-color: #D4E4F8;
     opacity: 1;
-    border-radius: 8px;
     width: 75px;
     height: 24px;
     display: flex;
@@ -146,8 +144,10 @@
     justify-content: center;
     color: #017BEB;
     border-radius: 8px;
-    outline: 2px solid #017BEB;
-    outline-offset: 2px;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #017BEB;
+    outline: none;
+    
+    
 }
 
 
@@ -174,8 +174,7 @@
     align-items: center;
     justify-content: center;
     color: #2A9C64;
-    outline: 2px solid #2A9C64;
-    outline-offset: 2px;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #2A9C64;
 }
 
 @media (max-width: 550px) {
