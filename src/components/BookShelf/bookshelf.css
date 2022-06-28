@@ -24,7 +24,7 @@ h1 {
 }
 
 
-.add-btn, .entry-form-submit {
+.add-btn {
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -38,6 +38,7 @@ h1 {
     align-items: center;
 
 }
+
 
 .add-icon {
     width: 24px;

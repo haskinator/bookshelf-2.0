@@ -4,21 +4,22 @@
 .book-detail {
     display: flex;
     margin: 0 auto;
-    width: 65%;
+    max-width: 750px;
     margin-top: 68px;
     height: 180px;
+    column-gap: 24px;
     justify-content: space-between;
+    padding: 0 40px;
 }
 
 .book-detail-data {
-    width: 55%;
+    max-width: 55%;
 }
 
 .book-detail-left {
-    width: 240px;
+    max-width: 40%;
     display: flex;
     flex-direction: column;
-    margin-left: 58px;
 }
 
 .book-detail-img {
@@ -36,6 +37,7 @@
     font-weight: 700;
     margin-top: 16px;
     margin-bottom: 4px;
+    column-gap: 8px;
     
 }
 .remove {
@@ -175,3 +177,28 @@
     outline: 2px solid #2A9C64;
     outline-offset: 2px;
 }
+
+@media (max-width: 550px) {
+    
+    .book-detail-header{
+        font-size: 36px;
+    }
+    
+    .book-detail {
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+        row-gap: 24px;
+    }
+
+
+    .book-detail-data {
+        max-width: 100%;
+    }
+
+    .book-detail-left {
+        max-width: 100%;
+    }
+
+}
+

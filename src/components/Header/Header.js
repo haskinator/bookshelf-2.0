@@ -110,7 +110,7 @@ export default function Header ({baseUrl}) {
                     <button className='entry-form-submit' type="submit">Log in</button>
                   </form>
                   {loginFailed ? <p className='login-failed'>Wrong username or password.</p> : null}
-                  <p>If you do not have an account, please <span className='entry-switch' onClick={()=>{setUserExists(false);setLogInFailed(false)}}>sign up.</span></p>
+                  <p className='entry-form-switch'>If you do not have an account, please <span className='entry-switch' onClick={()=>{setUserExists(false);setLogInFailed(false)}}>sign up.</span></p>
                   {message !== '' ? <p>{message}</p> : null}
                  
                 </div>
@@ -134,7 +134,7 @@ export default function Header ({baseUrl}) {
                     signupSuccess ? <p> Signed up successfully. <span className='entry-switch' onClick={()=>{setUserExists(true);setSignupSuccess(false)}}>Login</span></p>
                     : usernameTaken ? 
                       <p>This user already exist, please <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
-                    : <p>Already have an account? <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
+                    : <p className='entry-form-switch'>Already have an account? <span className='entry-switch' onClick={()=>{setUserExists(true)}}>Login</span></p>
                   }
 
                   { null

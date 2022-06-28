@@ -31,6 +31,7 @@
     color: red;
     opacity: 0.6;
     padding-bottom: 8px;
+    text-align: center;
 }
 
 .header-entry {
@@ -148,6 +149,13 @@
 .entry-form-submit {
     width: 100%;
     margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+    border: 1px black solid;
+    border-radius: 12px;
+    height: 40px;
 }
 
 .entry-form-submit:hover {
@@ -156,6 +164,9 @@
     color: white;
 }
 
+.entry-form-switch {
+    text-align: center;
+}
 
 .entry-switch {
     color: black;
@@ -169,13 +180,14 @@
 
 }
 
-@media (max-width: 520px) {
+@media (max-width: 570px) {
     .logged {
         display: none; 
     }
 
     .entry-form-info {
         margin: 16px 0 24px 0;
+        text-align: center;
     }
 
     .entry-form-credentials {
